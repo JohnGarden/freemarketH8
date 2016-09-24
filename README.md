@@ -1,7 +1,7 @@
 # freemarketH8
 
 Para inicializar o projeto
-- Baixe o repositório
+- Clone o repositório
 - Entre na pasta `freemarketh8`  
 - Execute `npm install`
 - Execute `SET DEBUG=freemarketh8:* & npm start`
