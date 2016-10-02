@@ -19,3 +19,9 @@ Para configurar o MongoDB
 Para resolver o `warning` sobre `bson`
 - `C:\..\freemarketh8\node_modules\bson\ext\index.js`
 - http://stackoverflow.com/questions/28651028/cannot-find-module-build-release-bson-code-module-not-found-js-bson
+
+Pupular o banco de dados usando `seeds`
+- Execute $ npm install -g node-mongo-seeds
+- Na pasta `/seeds` adicione os arquivos `.json` para popular o db
+- O nome do arquivo será o nome da coleção
+- Execute `seeds` para popular o banco
