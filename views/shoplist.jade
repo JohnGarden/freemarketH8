@@ -11,17 +11,13 @@ html
           h1(style='margin-top: 0 !important;')  Lojas H8 
           .wrapper
             .row
-              button.col-xs-4.col-sm-3.shop-button(type='button') Loja 1
-              button.col-xs-4.col-sm-3.shop-button(type='button') Loja 2
-              button.col-xs-4.col-sm-3.shop-button(type='button') Loja 3
-              button.col-xs-4.col-sm-3.shop-button(type='button') Loja 4
-              button.col-xs-4.col-sm-3.shop-button(type='button') Loja 5
-              button.col-xs-4.col-sm-3.shop-button(type='button') Loja 6
-              button.col-xs-4.col-sm-3.shop-button(type='button') Loja 7
-              button.col-xs-4.col-sm-3.shop-button(type='button') Loja 8
+              each shop, i in shoplist
+                button.col-xs-4.col-sm-3.shop-button(type='button') #{shop.name}
+
         #footer
           button.new-shop(type='button')
             | Nova Loja
             p
+
 
 
