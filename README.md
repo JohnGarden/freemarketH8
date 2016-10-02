@@ -15,3 +15,7 @@ Para configurar o MongoDB
 - Execute `mongod --dbpath c:\...\freemarketh8\data\` para iniciliazar o servidor
 - Em outra janela do terminal, ainda na pasta `bin` execute `mongo` para operar com o banco de dados
 - Para selecionar o banco de dados do projeto execute `use freemarketh8`
+
+Para resolver o `warning` sobre `bson`
+
+- http://stackoverflow.com/questions/28651028/cannot-find-module-build-release-bson-code-module-not-found-js-bson
