@@ -6,28 +6,3 @@ body {
 a {
   color: #00B7FF;
 }
-
-
-
-div {
-  text-align:center;
-}
-
-h1 {
-  background-color:#CFCFCF;
-  color:#1A237E;
-}
-
-.shop-button {
-  padding-bottom: 45px;
-  padding-top: 50px;
-  background-color:blue;
-  color:white;
-}
-
-.new-shop {
-  padding-bottom: 5px;
-  padding-top: 10px;
-  background-color:blue;
-  color:white;
-}
