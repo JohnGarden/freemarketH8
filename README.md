@@ -24,4 +24,4 @@ Pupular o banco de dados usando `seeds`
 - Execute `$ npm install -g node-mongo-seeds`
 - Na pasta `/seeds` adicione os arquivos `.json` para popular o db
 - O nome do arquivo será o nome da coleção
-- Execute `$ seeds` para popular o banco
+- Execute `$ seed` para popular o banco
