@@ -3,9 +3,30 @@ html
   head
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
     link(rel='stylesheet', href='/stylesheets/shoplist.css')
+    link(rel='stylesheet', href='/stylesheets/shop.css')
 
   body
     block content
       #holder
         #header
           h1(style='margin-top: 0 !important;')  #{title}
+          
+          table
+            thead
+              tr
+                th Produto
+                th Preço
+                th Quantidade
+            tbody
+              tr
+                td Chocolate
+                td R$2.00
+                td 15
+              tr
+                td Cone de churros
+                td R$4.00
+                td 20
+              tr
+                td Marmita
+                td R$10.00
+                td 10
