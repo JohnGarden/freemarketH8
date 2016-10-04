@@ -11,7 +11,7 @@ var db = monk('localhost:27017/freemarketh8');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var shoplist = require('./routes/shoplist');
+var shops = require('./routes/shops');
 
 var app = express();
 
@@ -35,7 +35,7 @@ app.use(function(req,res,next){
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/shoplist', shoplist);
+app.use('/shops', shops);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
