@@ -12,12 +12,9 @@ html
           .wrapper
             .row
               each shop, i in shoplist
-                button.col-xs-4.col-sm-3.shop-button(type='button') #{shop.name}
+                button.col-xs-4.col-sm-3.shop-button(type='button' onclick="window.location.href='shoplist/#{shop.name}'") #{shop.name}
 
         #footer
           button.new-shop(type='button')
             | Nova Loja
             p
-
-
-
