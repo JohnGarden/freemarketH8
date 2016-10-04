@@ -1,20 +1,18 @@
-doctype html
-html
-  head
-    title=title
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
-    link(rel='stylesheet', href='/stylesheets/shoplist.css')
-  body
-    block content
-      #holder
-        #header
-          h1(style='margin-top: 0 !important;')  Lojas H8 
-          .wrapper
-            .row
-              each shop, i in shoplist
-                button.col-xs-4.col-sm-3.shop-button(type='button' onclick="window.location.href='shops/#{shop.name}'") #{shop.name}
+extends layout
 
-        #footer
-          button.new-shop(type='button')
-            | Nova Loja
-            p
+block append head
+  link(rel='stylesheet', href='/stylesheets/shoplist.css')
+
+block append content
+  #holder
+    .wrapper
+      .list-group
+        each shop, i in shoplist
+          a.list-group-item(href="/shops/#{shop.name}")
+            | #{shop.name}
+            span.badge #{shop.name.length}
+
+    #footer
+      button.new-shop(type='button')
+        | Nova Loja
+        p
