@@ -2,9 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res) {
-    var db = req.db;
-    var collection = db.get('shopcollection');
-    collection.find({},{},function(e,docs){
+    var collection = req.db.get('shopcollection');
+    collection.find({},{}, function(e,docs){
         res.render('shoplist', {
             title: "Lojas H8",
             shoplist: docs,
@@ -17,9 +16,12 @@ router.get('/new', function(req, res, next) {
 });
 
 router.post('/new', function(req, res, next) {
-  console.log("Tried creating store!");
+  console.log("Creating store!");
   console.log(req.body.store.name);
   console.log(req.body.store.owner);
+
+  req.db.get('shopcollection').insert({name: req.body.store.name});
+
   res.redirect('/');
 });
 
