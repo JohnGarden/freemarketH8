@@ -1,0 +1,15 @@
+extends layout
+
+block append head
+  link(rel='stylesheet', href='/stylesheets/shoplist.css')
+
+block append content
+  .wrapper
+    form(action="/shops/new", method="post")
+      .form-group
+        label(for="storeName") Nome
+        input.form-control#storeName(placeholder="ex.: Comes e Bebes 203", name="store[name]")
+      .form-group
+        label(for="storeOwner") Responsável
+        input.form-control#storeOwner(placeholder="Nome ou Apelido", name="store[owner]")
+      button.btn.btn-primary.btn-block(type="submit", value="Submit") Criar

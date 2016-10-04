@@ -48,7 +48,6 @@ html, body{
 }
 
 #holder {
-  min-height: 100%;
   margin-bottom: 6em;
   position: relative;
 }
