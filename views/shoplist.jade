@@ -9,7 +9,7 @@ block append content
       .list-group
         each shop, i in shoplist
           a.list-group-item(href="/shops/#{shop._id}") #{shop.name}
-            span.badge #{shop.name.length}
+            span.badge #{(shop.products || []).length}
 
     #footer
       a.btn.btn-primary.btn-block(href='/shops/new')

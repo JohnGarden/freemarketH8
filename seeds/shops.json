@@ -1,14 +1,147 @@
 [
-  {"name" : "Brigadeiros 216"},
-  {"name" : "Bodega 209B"},
-  {"name" : "Bar do MIB"},
-  {"name" : "Trufas do H8"},
-  {"name" : "Cones Trufados"},
-  {"name" : "Balas e Doces"},
-  {"name" : "Mercadinho do C"},
-  {"name" : "Papel H-oitogênico"},
-  {"name" : "Comida boa no H8"},
-  {"name" : "Loja do Chá 142"},
-  {"name" : "Cama Mesa e Banho"},
-  {"name" : "Aluguel de Ferramentas"}
+  {
+    "name": "Brigadeiros 216",
+    "products": [
+      {
+        "name": "Cholocate",
+        "price": 2.50,
+        "available": true
+      },
+      {
+        "name": "Leite Ninho",
+        "price": 2.00,
+        "available": true
+      },
+      {
+        "name": "Chocolate Branco",
+        "price": 2.00,
+        "available": false
+      }
+    ]
+  },
+  {
+    "name": "Bodega 209B",
+    "products": [
+      {
+        "name": "Skol",
+        "price": 3.00,
+        "available": true
+      },
+      {
+        "name": "Brahma",
+        "price": 2.00,
+        "available": true
+      }
+    ]
+  },
+  {
+    "name": "Bar do MIB",
+    "products": [
+      {
+        "name": "Cerveja",
+        "price": 3.00,
+        "available": true
+      }
+    ]
+  },
+  {
+    "name": "Trufas do H8",
+    "products": [
+      {
+        "name": "Brigadeiro",
+        "price": 3.00,
+        "available": true
+      }
+    ]
+  },
+  {
+    "name": "Cones Trufados",
+    "products": [
+      {
+        "name": "Maracujá",
+        "price": 3.00,
+        "available": true
+      }
+    ]
+  },
+  {
+    "name": "Balas e Doces",
+    "products": [
+      {
+        "name": "Fini",
+        "price": 5.00,
+        "available": true
+      }
+    ]
+  },
+  {
+    "name": "Mercadinho do C",
+    "products": [
+      {
+        "name": "Passatempo",
+        "price": 3.00,
+        "available": true
+      }
+    ]
+  },
+  {
+    "name": "Papel H-oitogênico",
+    "products": [
+      {
+        "name": "Neve",
+        "price": 3.00,
+        "available": true
+      }
+    ]
+  },
+  {
+    "name": "Comida boa no H8",
+    "products": [
+      {
+        "name": "Marmita",
+        "price": 10.00,
+        "available": true
+      }
+    ]
+  },
+  {
+    "name": "Loja do Chá 142",
+    "products": [
+      {
+        "name": "Camomila",
+        "price": 5.00,
+        "available": true
+      },
+      {
+        "name": "Chá verde",
+        "price": 10.00,
+        "available": true
+      },
+      {
+        "name": "Boldo",
+        "price": 10.00,
+        "available": false
+      }
+    ]
+  },
+  {
+    "name": "Cama Mesa e Banho",
+    "products": [
+      {
+        "name": "Lençol",
+        "price": 100.00,
+        "available": true
+      }
+    ]
+  },
+  {
+    "name": "Aluguel de Ferramentas",
+    "products": [
+      {
+        "name": "Chave de Fenda",
+        "price": 0.50,
+        "available": true
+      }
+    ]
+  }
 ]
