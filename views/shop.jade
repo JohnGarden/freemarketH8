@@ -10,17 +10,24 @@ block append content
       tr
         th Produto
         th Preço
-        th Quantidade
+        th Disponível
     tbody
-      tr
-        td Chocolate
-        td R$2.00
-        td 15
-      tr
-        td Cone de churros
-        td R$4.00
-        td 20
-      tr
-        td Marmita
-        td R$10.00
-        td 10
+      if shop.products && shop.products.length > 0
+        each product, i in shop.products
+          tr
+            td #{product.name}
+            td #{"R$" + product.price}
+            td #{product.available ? "Sim" : "Não"}
+      else
+        tr
+          td Chocolate
+          td R$2.00
+          td 15
+        tr
+          td Cone de churros
+          td R$4.00
+          td 20
+        tr
+          td Marmita
+          td R$10.00
+          td 10
