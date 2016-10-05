@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res) {
-    var collection = req.db.get('shopcollection');
-    collection.find({},{}, function(e,docs){
+    req.db.get('shops').find({},{}, function(e,docs){
         res.render('shoplist', {
             title: "FreeMarket H8",
             shoplist: docs,
@@ -20,7 +19,7 @@ router.post('/new', function(req, res, next) {
   console.log(req.body.store.name);
   console.log(req.body.store.owner);
 
-  req.db.get('shopcollection').insert({name: req.body.store.name});
+  req.db.get('shops').insert({name: req.body.store.name});
 
   res.redirect('/');
 });
