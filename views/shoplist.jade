@@ -8,8 +8,7 @@ block append content
     .wrapper
       .list-group
         each shop, i in shoplist
-          a.list-group-item(href="/shops/#{shop.name}")
-            | #{shop.name}
+          a.list-group-item(href="/shops/#{shop._id}") #{shop.name}
             span.badge #{shop.name.length}
 
     #footer

@@ -1,16 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res) {
-    req.db.get('shops').find({},{}, function(e,docs){
-        res.render('shoplist', {
+router.get('/', function(req, res, next) {
+  req.db.get('shops').find()
+      .then(function(docs) {
+        res.render('shoplist', 
+          {
             title: "FreeMarket H8",
-            shoplist: docs,
-        });
-    });
+            shoplist: docs || [],
+          });
+      })
+      .onReject(next);
 });
 
-router.get('/new', function(req, res, next) {
+router.get('/new', function(req, res) {
   res.render('new_shop', { title: "Nova Loja"} );
 });
 
@@ -19,14 +22,18 @@ router.post('/new', function(req, res, next) {
   console.log(req.body.store.name);
   console.log(req.body.store.owner);
 
-  req.db.get('shops').insert({name: req.body.store.name});
-
-  res.redirect('/');
+  req.db.get('shops').insert({name: req.body.store.name})
+      .onFulfill(function() { res.redirect('/'); })
+      .onReject(next);
 });
 
-/* GET Shop page. */
 router.get('/:shopId', function(req, res, next) {
-  res.render('shop', { title: req.params.shopId });
+  req.db.get('shops').findById(req.params.shopId)
+      .then(function(shop) {
+        if (!shop) return next();
+        res.render('shop', {title: shop.name, shop: shop});
+      })
+      .onReject(next);
 });
 
 module.exports = router;
