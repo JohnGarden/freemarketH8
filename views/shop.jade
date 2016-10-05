@@ -16,7 +16,7 @@ block append content
         each product, i in shop.products
           tr
             td #{product.name}
-            td #{"R$" + product.price}
+            td #{"R$" + product.price.toFixed(2)}
             td #{product.available ? "Sim" : "Não"}
       else
         tr
