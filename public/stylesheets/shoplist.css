@@ -1,5 +1,9 @@
+@import url("text.css");
+
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+  font-family: "Amaranth";
+  font-size: 14px;
 }
 
 a {
@@ -10,9 +14,11 @@ div {
   text-align:center;
 }
 
-h1 {
-  background-color:#CFCFCF;
-  color:#1A237E !important;
+#app-title {
+  font-family: "Amaranth";
+  font-weight: 800;
+  color: #004C99;
+  background-color:#CCCCCC;
 }
 
 .shop-button {

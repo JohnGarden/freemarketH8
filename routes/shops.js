@@ -5,7 +5,7 @@ router.get('/', function(req, res) {
     var collection = req.db.get('shopcollection');
     collection.find({},{}, function(e,docs){
         res.render('shoplist', {
-            title: "Lojas H8",
+            title: "FreeMarket H8",
             shoplist: docs,
         });
     });
