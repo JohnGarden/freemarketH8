@@ -11,7 +11,7 @@ block append content
         th Produto
         th Preço
         th Disponível
-    tbody
+    tbody.wrapper-shop-list
       if shop.products && shop.products.length > 0
         each product, i in shop.products
           tr
@@ -31,3 +31,7 @@ block append content
           td Marmita
           td R$10.00
           td 10
+
+block append content
+  a(href='/') 
+    i#footer.fa.fa-angle-left(aria-hidden='true').back-btn

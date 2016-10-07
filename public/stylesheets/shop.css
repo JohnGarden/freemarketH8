@@ -18,3 +18,15 @@ th, td {
 table tbody tr:hover {
   background-color: #ccffe6;
 }
+
+#footer {
+  position: fixed;
+  width: 100%;
+  left: 10px;
+  right: 0;
+  bottom: 10px;
+  padding: 0;
+  text-align: left;
+  font-size: 5vh;  
+
+}

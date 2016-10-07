@@ -5,12 +5,12 @@ block append head
 
 block append content
   #holder
-    .wrapper
+    .wrapper-shop-list
       .list-group
         each shop, i in shoplist
-          a.list-group-item(href="/shops/#{shop._id}") #{shop.name}
+          a.no-side-border.list-group-item(href="/shops/#{shop._id}") #{shop.name}
             span.badge #{(shop.products || []).length}
 
-    #footer
-      a.btn.btn-primary.btn-block(href='/shops/new')
-        | Nova Loja
+  #footer
+    a.new-shop-btn.btn.btn-primary.btn-block(href='/shops/new')
+      | Nova Loja
