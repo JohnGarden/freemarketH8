@@ -1,0 +1,25 @@
+@import url("text.css");
+
+body {
+  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+  font-family: "Amaranth";
+  font-size: 14px;
+}
+
+div {
+  text-align:center;
+}
+
+#app-title {
+  font-family: "Amaranth";
+  font-weight: 800;
+  color: #004C99;
+  background-color:#CCCCCC;
+  height: 60px;
+  padding-top: 10px;
+  margin-bottom: 0px;
+}
+
+.wrapper {
+  padding-top: 40px;
+}

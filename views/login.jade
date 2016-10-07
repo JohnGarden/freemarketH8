@@ -1,0 +1,11 @@
+extends layout
+
+block append head
+  link(rel='stylesheet', href='/stylesheets/login.css')
+
+block append content
+  #holder
+    .wrapper
+      a.btn.btn-primary(href='/login/facebook')
+        span.fa.fa-facebook
+          |  Entrar com Facebook
