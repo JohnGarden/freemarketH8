@@ -1,4 +1,5 @@
 @import url("text.css");
+@import url("shoplist.css");
 
 body {
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
@@ -10,7 +11,7 @@ div {
   text-align:center;
 }
 
-#app-title {
+/*#app-title {
   font-family: "Amaranth";
   font-weight: 800;
   color: #004C99;
@@ -19,7 +20,7 @@ div {
   padding-top: 10px;
   margin-bottom: 0px;
 }
-
+*/
 .wrapper {
   padding-top: 40px;
 }

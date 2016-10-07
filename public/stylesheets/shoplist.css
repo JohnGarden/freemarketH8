@@ -3,7 +3,7 @@
 body {
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
   font-family: "Amaranth";
-  font-size: 14px;
+  font-size: 16px;
 }
 
 a {
@@ -16,10 +16,11 @@ div {
 
 #app-title {
   font-family: "Amaranth";
+  font-size: 30px;
   font-weight: 800;
   color: #004C99;
   background-color:#CCCCCC;
-  height: 60px;
+  height: 10vh;
   padding-top: 10px;
   margin-bottom: 0px;
 }
@@ -39,7 +40,13 @@ div {
 }
 
 .wrapper {
-  width: 90%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+.wrapper-shop-list {
+  width: 95%;
   margin: 0 auto;
 }
 
@@ -48,15 +55,33 @@ html, body{
 }
 
 #footer {
-  position: absolute;
+  position: fixed;
+  width: 100%;
   left: 0;
   right: 0;
-  bottom: -6em;
-  padding: 1rem;
+  bottom: 0;
+  padding: 0;
   text-align: center;
+  margin: 0;
 }
 
 #holder {
-  margin-bottom: 6em;
+  margin-bottom: 50px;
   position: relative;
+
+}
+
+.no-side-border {
+  border-left: 0 none;
+  border-right: 0 none;
+}
+
+.new-shop-btn {
+  border-radius: 0;
+  font-size: 20px;
+}
+
+.input-new-shop {
+  border-radius: 0;
+  margin: 5px;
 }
