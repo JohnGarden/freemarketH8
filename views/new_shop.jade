@@ -8,10 +8,12 @@ block append content
     form(action="/shops/new", method="post")
       .form-group
         label(for="storeName") Nome
-        input.input-new-shop.form-control#storeName(placeholder="ex.: Comes e Bebes 203", name="store[name]")
+        input.input-new-shop.form-control#storeName(placeholder="ex.: Comes e Bebes 203", name="store[name]", required)
       .form-group
         label(for="storeOwner") Responsável
-        input.input-new-shop.form-control#storeOwner(placeholder="Nome ou Apelido", name="store[owner]")
+        input.input-new-shop.form-control#storeOwner(placeholder="Nome ou Apelido", name="store[owner]", required)
       button.new-shop-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Criar
-  i.fa.fa-angle-left(aria-hidden='true').back-btn
-    
+
+block append content
+  a(href='/') 
+    i#footer.fa.fa-angle-left(aria-hidden='true').back-btn
