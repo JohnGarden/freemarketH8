@@ -5,12 +5,14 @@ block append head
   link(rel='stylesheet', href='/stylesheets/shop.css')
 
 block append content
-  table
+  //passando o shopId pelo table pra usar no jquery 
+  table#shop(data-shopid="#{shopId}")
     thead
       tr
         th Produto
         th Preço
         th Disponível
+        th Deletar
     tbody.wrapper-shop-list
       if shop.products && shop.products.length > 0
         each product, i in shop.products
@@ -18,32 +20,34 @@ block append content
             td #{product.name}
             td #{"R$" + product.price.toFixed(2)}
             td #{product.available ? "Sim" : "Não"}
+            td deletar?
       else
         tr
           td Chocolate
           td R$2.00
           td 15
+          td deletar?
         tr
           td Cone de churros
           td R$4.00
           td 20
+          td deletar?
         tr
           td Marmita
           td R$10.00
           td 10
+          td deletar?
 
 block append content
   a(href='/') 
     i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
 
   #footer
-    form(action="/shops/new", method="post")
+    form(action="/shop/new", method="post")
       .form-group
-        label(for="storeName") Produto
-        input.input-new-shop.form-control#storeName(placeholder="ex.: Comes e Bebes 203", name="store[name]", required)
+        label(for="productName") Novo Produto
+        input.input-new-shop.form-control#productName(placeholder="ex.: Salgado", name="product[name]", required)
       .form-group
-        label(for="storeOwner") Preço
-        input.input-new-shop.form-control#storeOwner(placeholder="Nome ou Apelido", name="store[owner]", required)
-      //button.new-shop-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Criar
-      a.new-shop-btn.btn.btn-primary.btn-block(href='#')
-        | Cadastrar novo produto
+        label(for="productPrice") Preço
+        input.input-new-shop.form-control#productOwner(placeholder="ex.: 10.50", name="product[price]", required)
+      button.new-shop-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Criar

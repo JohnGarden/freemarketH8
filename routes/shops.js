@@ -4,7 +4,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   req.db.get('shops').find()
       .then(function(docs) {
-        res.render('shoplist', 
+        res.render('shoplist',
           {
             title: "FreeMarket H8",
             shoplist: docs || [],
@@ -31,7 +31,9 @@ router.get('/:shopId', function(req, res, next) {
   req.db.get('shops').findById(req.params.shopId)
       .then(function(shop) {
         if (!shop) return next();
-        res.render('shop', {title: shop.name, shop: shop});
+        var cookie = req.cookies.cookieName;
+        res.cookie('shopId', req.params.shopId, { maxAge: 900000, httpOnly: true });
+        res.render('shop', {title: shop.name, shop: shop, shopId: req.params.shopId});
       })
       .onReject(next);
 });
