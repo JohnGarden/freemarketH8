@@ -14,6 +14,7 @@ var db = monk(dbconfig.getdburl());
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var shops = require('./routes/shops');
+var shop = require('./routes/shop');
 
 var app = express();
 
@@ -44,6 +45,7 @@ app.use(function(req,res,next){
 app.use('/', routes);
 app.use('/users', users);
 app.use('/shops', shops);
+app.use('/shop', shop);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -53,7 +53,7 @@ html, body{
   height: 100%;
 }
 
-#footer {
+#shoplist-footer {
   position: fixed;
   width: 100%;
   left: 0;
@@ -83,4 +83,5 @@ html, body{
 .input-new-shop {
   border-radius: 0;
   margin: 5px;
+  width: 98%;
 }
