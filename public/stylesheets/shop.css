@@ -27,6 +27,14 @@ table tbody tr:hover {
   bottom: 10px;
   padding: 0;
   text-align: left;
-  font-size: 5vh;  
+  font-size: 5vh;
+}
 
+#back-btn {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  padding: 0;
+  text-align: left;
+  font-size: 40px;
 }

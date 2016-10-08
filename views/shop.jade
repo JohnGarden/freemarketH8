@@ -33,8 +33,9 @@ block append content
           td 10
 
 block append content
-  a(href='/')
-    i#footer
-      a.new-shop-btn.btn.btn-primary.btn-block(href='#')
-        | Cadastrar novo produto
-      .fa.fa-angle-left(aria-hidden='true').back-btn
+  a(href='/') 
+    i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
+
+  #footer
+    a.new-shop-btn.btn.btn-primary.btn-block(href='#')
+      | Cadastrar novo produto
