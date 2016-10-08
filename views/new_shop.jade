@@ -2,6 +2,7 @@ extends layout
 
 block append head
   link(rel='stylesheet', href='/stylesheets/shoplist.css')
+  link(rel='stylesheet', href='/stylesheets/shop.css')
 
 block append content
   .wrapper
@@ -16,4 +17,4 @@ block append content
 
 block append content
   a(href='/') 
-    i#footer.fa.fa-angle-left(aria-hidden='true').back-btn
+    i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
