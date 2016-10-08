@@ -40,13 +40,13 @@ block append content
           td R$10.00
           td 10
           td deletar?
-          
-    #footer
-      form(action="/shop/new", method="post")
-        .form-group
-          label(for="productName") Novo Produto
-          input.input-new-shop.form-control#productName(placeholder="ex.: Salgado", name="product[name]", required)
-        .form-group
-          label(for="productPrice") Preço
-          input.input-new-shop.form-control#productOwner(placeholder="ex.: 10.50", name="product[price]", required)
-        button.new-shop-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Cadastrar novo produto
+
+  #footer
+    form(action="/shop/new", method="post")
+      .form-group
+        label(for="productName") Novo Produto
+        input.input-new-shop.form-control#productName(placeholder="ex.: Salgado", name="product[name]", required)
+      .form-group
+        label(for="productPrice") Preço
+        input.input-new-shop.form-control#productOwner(placeholder="ex.: 10.50", name="product[price]", required)
+      button.new-shop-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Cadastrar novo produto

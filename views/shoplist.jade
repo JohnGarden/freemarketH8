@@ -11,6 +11,6 @@ block append content
           a.no-side-border.list-group-item(href="/shops/#{shop._id}") #{shop.name}
             span.badge #{(shop.products || []).length}
 
-  #footer
+  #shoplist-footer
     a.new-shop-btn.btn.btn-primary.btn-block(href='/shops/new')
       | Nova Loja
