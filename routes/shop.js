@@ -23,7 +23,7 @@ router.post('/new', function(req, res, next) {
   
   req.db.get('shops').update( {_id: req.cookies.shopId}, 
    {$push: {products: {name: req.body.product.name, price: parseFloat(req.body.product.price), available: true}}} )
-      .onFulfill(function() { res.redirect('/shops'); })
+      .onFulfill(function() { res.redirect('/shops/' + req.cookies.shopId); })
       .onReject(next);
 });
 
@@ -34,7 +34,7 @@ router.post('/delete', function(req, res, next) {
   
   req.db.get('shops').update( {_id: req.cookies.shopId}, 
     {$pull: {products: {name: req.body.product.name}}} )
-      .onFulfill(function() { res.redirect('/shops'); })
+      .onFulfill(function() { res.redirect('/shops/' + req.cookies.shopId); })
       .onReject(next);
 });
 
