@@ -21,10 +21,12 @@ router.post('/new', function(req, res, next) {
   //   console.log($("h1").html());
   // });
   
-  req.db.get('shops').update( {_id: req.cookies.shopId}, 
-   {$push: {products: {name: req.body.product.name, price: parseFloat(req.body.product.price), available: true}}} )
-      .onFulfill(function() { res.redirect('/shops/' + req.cookies.shopId); })
-      .onReject(next);
+  req.db.get('shops').update(
+    {_id: req.cookies.shopId}, 
+    {$addToSet: {products: {name: req.body.product.name, price: parseFloat(req.body.product.price), available: true}}}
+  )
+  .onFulfill(function() { res.redirect('/shops/' + req.cookies.shopId); })
+  .onReject(next);
 });
 
 router.post('/delete', function(req, res, next) {
@@ -32,10 +34,12 @@ router.post('/delete', function(req, res, next) {
   console.log(req.body);
   console.log(req.body.product.name);
   
-  req.db.get('shops').update( {_id: req.cookies.shopId}, 
-    {$pull: {products: {name: req.body.product.name}}} )
-      .onFulfill(function() { res.redirect('/shops/' + req.cookies.shopId); })
-      .onReject(next);
+  req.db.get('shops').update(
+    {_id: req.cookies.shopId}, 
+    {$pull: {products: {name: req.body.product.name}}}
+  )
+  .onFulfill(function() { res.redirect('/shops/' + req.cookies.shopId); })
+  .onReject(next);
 });
 
 module.exports = router;
