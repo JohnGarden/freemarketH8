@@ -24,7 +24,18 @@ router.post('/new', function(req, res, next) {
   req.db.get('shops').update( {_id: req.cookies.shopId}, 
    {$push: {products: {name: req.body.product.name, price: parseFloat(req.body.product.price), available: true}}} )
       .onFulfill(function() { res.redirect('/shops'); })
-      .onReject(next);  
+      .onReject(next);
+});
+
+router.post('/delete', function(req, res, next) {
+  console.log("Deleting product!");
+  console.log(req.body);
+  console.log(req.body.product.name);
+  
+  req.db.get('shops').update( {_id: req.cookies.shopId}, 
+    {$pull: {products: {name: req.body.product.name}}} )
+      .onFulfill(function() { res.redirect('/shops'); })
+      .onReject(next);
 });
 
 module.exports = router;

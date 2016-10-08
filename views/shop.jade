@@ -8,45 +8,36 @@ block append content
   a(href='/') 
     i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
 
-  //passando o shopId pelo table pra usar no jquery 
+  //- passando o shopId pelo table pra usar no jquery
   table#shop(data-shopid="#{shopId}")
     thead
       tr
         th Produto
         th Preço
         th Disponível
-        th Deletar
+        //- th Deletar
     tbody.wrapper-shop-list
       if shop.products && shop.products.length > 0
         each product, i in shop.products
-          tr
-            td
-              div(contenteditable="") #{product.name}
-            td
-              div(contenteditable="") #{"R$" + product.price.toFixed(2)}
-            td
-              div(contenteditable="") #{product.available ? "Sim" : "Não"}
-            td
-              button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar?
+            tr
+              td
+                div(contenteditable="") #{product.name}
+              td
+                div(contenteditable="") #{"R$" + product.price.toFixed(2)}
+              td
+                div(contenteditable="") #{product.available ? "Sim" : "Não"}
+              //- td
+              //-   button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar?
       else
         tr
-          td Chocolate
-          td R$2.00
-          td 15
-          td 
-            button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar?
-        tr
-          td Cone de churros
-          td R$4.00
-          td 20
-          td 
-            button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar?
-        tr
-          td Marmita
-          td R$10.00
-          td 10
-          td 
-            button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar?
+          td Lista Vazia
+
+  #footer
+    form(action="/shop/delete", method="post")
+      .form-group
+        label(for="productName") Produto a ser excluído
+        input.input-new-shop.form-control#productName(placeholder="ex.: Chave de Fenda", name="product[name]", required)
+      button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar produto?
 
   #footer
     form(action="/shop/new", method="post")

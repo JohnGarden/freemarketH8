@@ -23,6 +23,7 @@ table tbody tr:hover {
 #footer {
   margin-left: 10px;
   margin-right: 10px;
+  margin-top: 20px;
   text-align: left;
   font-size: 25px;
   background-color: #52d4c8;
@@ -38,6 +39,7 @@ table tbody tr:hover {
 }
 
 .delete-btn {
+  font-size: 20px;
   background-color: red;
   border-color: darkred;
 }
@@ -45,3 +47,4 @@ table tbody tr:hover {
 .delete-btn:hover {
   background-color: darkred;
   border-color: black;
+}
