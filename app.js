@@ -8,7 +8,8 @@ var bodyParser = require('body-parser');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/freemarketh8');
+var dbconfig = require('./config.js');
+var db = monk(dbconfig.getdburl());
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

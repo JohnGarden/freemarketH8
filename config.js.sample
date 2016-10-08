@@ -1,0 +1,14 @@
+var config = {
+
+  user: '',
+  passwd: '' ,
+  host: 'ds033337.mongolab.com:33337' ,
+  db:  'freemarketh8',
+
+  getdburl: function() {
+    return "mongodb://" + config.user + ":"  + config.passwd + "@" + config.host + "/" + config.db;
+  }
+
+}
+
+module.exports = config;
