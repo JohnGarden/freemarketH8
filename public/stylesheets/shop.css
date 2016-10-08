@@ -45,13 +45,3 @@ table tbody tr:hover {
 .delete-btn:hover {
   background-color: darkred;
   border-color: black;
-}
-.delete-btn {
-  background-color: red;
-  border-color: darkred;
-}
-
-.delete-btn:hover {
-  background-color: darkred;
-  border-color: black;
-}
