@@ -20,26 +20,33 @@ block append content
       if shop.products && shop.products.length > 0
         each product, i in shop.products
           tr
-            td #{product.name}
-            td #{"R$" + product.price.toFixed(2)}
-            td #{product.available ? "Sim" : "Não"}
-            td deletar?
+            td
+              div(contenteditable="") #{product.name}
+            td
+              div(contenteditable="") #{"R$" + product.price.toFixed(2)}
+            td
+              div(contenteditable="") #{product.available ? "Sim" : "Não"}
+            td
+              button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar?
       else
         tr
           td Chocolate
           td R$2.00
           td 15
-          td deletar?
+          td 
+            button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar?
         tr
           td Cone de churros
           td R$4.00
           td 20
-          td deletar?
+          td 
+            button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar?
         tr
           td Marmita
           td R$10.00
           td 10
-          td deletar?
+          td 
+            button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar?
 
   #footer
     form(action="/shop/new", method="post")
