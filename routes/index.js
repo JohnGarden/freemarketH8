@@ -10,7 +10,8 @@ passport.use(new Strategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     return cb(null, profile);
-  }));
+  }
+));
 
 passport.serializeUser(function(user, cb) {
   cb(null, user);
@@ -40,6 +41,7 @@ router.get('/login/facebook/return',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
-  });
+  }
+);
 
 module.exports = router;

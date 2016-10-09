@@ -21,11 +21,11 @@ block append content
         each product, i in shop.products
           tr
             td
-              div(contenteditable="") #{product.name}
+              div #{product.name}
             td
-              div(contenteditable="") #{"R$" + product.price.toFixed(2)}
+              div #{"R$" + product.price.toFixed(2)}
             td
-              div(contenteditable="") #{product.available ? "Sim" : "Não"}
+              div #{product.available ? "Sim" : "Não"}
             //- td
             //-   button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar?
       else
