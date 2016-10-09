@@ -24,7 +24,7 @@ passport.deserializeUser(function(obj, cb) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   console.log(req.user);
-  if (req.user) {
+  if (req.user && req.isAuthenticated()) {
     res.redirect('/shops');    
   } else {
     res.redirect('/login');
