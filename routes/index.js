@@ -6,7 +6,7 @@ var router = express.Router();
 passport.use(new Strategy({
     clientID: '749317298544850',
     clientSecret: 'f8e639b92453e45d7934ba42cb5cff56',
-    callbackURL: 'http://localhost:3000/login/facebook/return'
+    callbackURL: '/login/facebook/return'
   },
   function(accessToken, refreshToken, profile, cb) {
     return cb(null, profile);
