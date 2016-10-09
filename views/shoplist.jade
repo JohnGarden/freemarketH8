@@ -5,9 +5,17 @@ block append head
 
 block append content
   #holder
+    .list-headers Lojas
     .wrapper-shop-list
       .list-group
         each shop, i in shoplist
+          a.no-side-border.list-group-item(href="/shops/#{shop._id}") #{shop.name}
+            span.badge #{(shop.products || []).length}
+
+    .list-headers Minhas lojas 
+    .wrapper-shop-list
+      .list-group
+        each shop, i in myshoplist
           a.no-side-border.list-group-item(href="/shops/#{shop._id}") #{shop.name}
             span.badge #{(shop.products || []).length}
 
