@@ -24,6 +24,13 @@ div {
   margin-bottom: 0px;
 }
 
+.list-headers {
+  font-family: "Amaranth";
+  color: #004C99;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .shop-button {
   padding-bottom: 1em;
   padding-top: 1em;
