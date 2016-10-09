@@ -1,5 +1,5 @@
 var express = require('express');
-var middleware = require('./routemiddleware.js')(); 
+var middleware = require('./routemiddleware.js')();
 var router = express.Router();
 
 router.get('/', isAuthenticaded, function(req, res, next) {
