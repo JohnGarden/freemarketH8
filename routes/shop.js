@@ -1,10 +1,11 @@
 var express = require('express');
+var middleware = require('./routemiddleware.js')();
 var router = express.Router();
 
 // var jsdom = require("jsdom");
 // var window = jsdom.jsdom().defaultView;
 
-router.post('/new', function(req, res, next) {
+router.post('/new', isAuthenticaded, function(req, res, next) {
   console.log("Creating product!");
   console.log(req.body);
   console.log(req.cookies);
@@ -54,7 +55,7 @@ router.post('/new', function(req, res, next) {
   // if (req.db.get('shops').find({_id: req.cookies.shopId, products: {name: req.body.product.name}}).toArray().length < 1){
 });
 
-router.post('/delete', function(req, res, next) {
+router.post('/delete', isAuthenticaded, function(req, res, next) {
   //deleta todas os items com o nome entrado
   //o nome de cada item deve ser unico pela funcao de criar acima
   console.log("Deleting product!");

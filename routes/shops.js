@@ -1,7 +1,8 @@
 var express = require('express');
+var middleware = require('./routemiddleware.js')(); 
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
+router.get('/', isAuthenticaded, function(req, res, next) {
   req.db.get('shops').find()
       .then(function(docs) {
         var myshops = [];
@@ -21,11 +22,11 @@ router.get('/', function(req, res, next) {
       .onReject(next);
 });
 
-router.get('/new', function(req, res) {
+router.get('/new', isAuthenticaded, function(req, res) {
   res.render('new_shop', { title: "Nova Loja"} );
 });
 
-router.post('/new', function(req, res, next) {
+router.post('/new', isAuthenticaded, function(req, res, next) {
   console.log("Creating store!");
   console.log(req.body.store.name);
   console.log(req.body.store.owner);
@@ -36,7 +37,7 @@ router.post('/new', function(req, res, next) {
       .onReject(next);
 });
 
-router.get('/:shopId', function(req, res, next) {
+router.get('/:shopId', isAuthenticaded, function(req, res, next) {
   req.db.get('shops').findById(req.params.shopId)
       .then(function(shop) {
         if (!shop) return next();
