@@ -40,10 +40,15 @@ router.post('/new', isAuthenticaded, function(req, res, next) {
 router.get('/:shopId', isAuthenticaded, function(req, res, next) {
   req.db.get('shops').findById(req.params.shopId)
       .then(function(shop) {
+        var isOwner = false;
+        if (shop.hasOwnProperty('ownerid') && shop['ownerid'] == req.user.id) {
+          isOwner = true;
+        }
+
         if (!shop) return next();
         var cookie = req.cookies.cookieName;
         res.cookie('shopId', req.params.shopId, { maxAge: 900000, httpOnly: true });
-        res.render('shop', {title: shop.name, shop: shop, shopId: req.params.shopId});
+        res.render('shop', {title: shop.name, shop: shop, shopId: req.params.shopId, isOwner: isOwner});
       })
       .onReject(next);
 });
