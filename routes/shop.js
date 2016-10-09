@@ -43,7 +43,6 @@ router.post('/new', function(req, res, next) {
     }
   }, 1000);
   
-
   //caga por enquanto eh pra poder usar jquery em vez de cookie
   // jsdom.jQueryify(window, "http://code.jquery.com/jquery.js", function () {
   //   var $ = window.$;
@@ -53,7 +52,6 @@ router.post('/new', function(req, res, next) {
   // });
   
   // if (req.db.get('shops').find({_id: req.cookies.shopId, products: {name: req.body.product.name}}).toArray().length < 1){
-  
 });
 
 router.post('/delete', function(req, res, next) {
