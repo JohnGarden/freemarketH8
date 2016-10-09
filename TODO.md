@@ -4,7 +4,8 @@
 
 # Editar/add/delete produtos
 - [ ] avisar ao user que ele tentou entrar com um produto que ja existe
-- [ ] fazer feature: editar produto
+- [ ] avisos da operação (item criado com sucesso, item deletado com sucesso, nenhum item deletado, etc)
+- [ ] fazer feature: editar produto (editar preço e disponibilidade)
 - [ ] fazer editar/add/delete items da loja aparecer so se user for admin da loja
 	
 # Login
