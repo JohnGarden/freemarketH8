@@ -1,0 +1,12 @@
+extends layout
+
+block append head
+  link(rel='stylesheet', href='/stylesheets/shoplist.css')
+
+block append content
+  #holder
+    .list-headers Lojas
+    .wrapper-shop-list
+      .list-group
+        each university, i in universities
+          a.no-side-border.list-group-item(href="/shops/#{university._id}") #{university.name}

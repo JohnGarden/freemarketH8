@@ -5,6 +5,22 @@ var router = express.Router();
 // var jsdom = require("jsdom");
 // var window = jsdom.jsdom().defaultView;
 
+router.get('/:shopId', isAuthenticated, function(req, res, next) {
+  req.db.get('shops').findById(req.params.shopId)
+      .then(function(shop) {
+        var isOwner = false;
+        if (shop.hasOwnProperty('ownerid') && shop['ownerid'] == req.user.id) {
+          isOwner = true;
+        }
+
+        if (!shop) return next();
+        var cookie = req.cookies.cookieName;
+        res.cookie('shopId', req.params.shopId, { maxAge: 900000, httpOnly: true });
+        res.render('shop', {title: shop.name, shop: shop, shopId: req.params.shopId, isOwner: isOwner});
+      })
+      .onReject(next);
+});
+
 router.post('/new', isAuthenticated, function(req, res, next) {
   console.log("Creating product!");
   console.log(req.body);

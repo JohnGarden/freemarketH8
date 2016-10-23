@@ -9,14 +9,14 @@ block append content
     .wrapper-shop-list
       .list-group
         each shop, i in shoplist
-          a.no-side-border.list-group-item(href="/shops/#{shop._id}") #{shop.name}
+          a.no-side-border.list-group-item(href="/shop/#{shop._id}") #{shop.name}
             span.badge #{(shop.products || []).length}
 
     .list-headers Minhas lojas 
     .wrapper-shop-list
       .list-group
         each shop, i in myshoplist
-          a.no-side-border.list-group-item(href="/shops/#{shop._id}") #{shop.name}
+          a.no-side-border.list-group-item(href="/shop/#{shop._id}") #{shop.name}
             span.badge #{(shop.products || []).length}
 
   #shoplist-footer
