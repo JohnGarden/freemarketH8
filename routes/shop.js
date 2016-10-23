@@ -93,8 +93,8 @@ router.post('/delete', isAuthenticated, function(req, res, next) {
 });
 
 router.post('/delete_shop', isAuthenticated, function(req, res, next) {
-  //deleta todas os items com o nome entrado
-  //o nome de cada item deve ser unico pela funcao de criar acima
+  //deleta loja pra sempre
+  //talvez precise de uma confirmação melhor do usuário
   console.log("Deleting shop!");
   console.log(req.body);
   console.log(req.cookies);
