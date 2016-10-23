@@ -53,4 +53,47 @@ router.post('/request', isAuthenticated, function(req, res, next) {
   //     .onReject(next);
 });
 
+
+router.post('/request/accepted', isAuthenticated, function(req, res, next) {
+  console.log("Admin Accepted Access to University!");
+  console.log(req.body.universityId);
+  console.log(req.body.userId);
+  console.log(req.user);
+
+  // Deleta request do aluno em university
+  req.db.get('universities').update(
+    { _id: req.body.universityId},
+    { $pull: 
+      {
+        requests: 
+        {
+          userid: req.body.userId
+        }
+      }
+    }
+  )
+  .onFulfill(function() { 
+    // Aceita request do aluno em university
+    req.db.get('universities').update(
+      { _id: req.body.universityId},
+      { $addToSet: 
+        {
+          requests: 
+          {
+            userid: req.body.userId, 
+            name: req.body.displayName, 
+            accepted: true
+          }
+        }
+      }
+    );
+
+
+    res.redirect("/shops/" + req.body.universityId); })
+  .onReject(next);
+  console.log("Request deleted");
+
+  
+});
+
 module.exports = router;

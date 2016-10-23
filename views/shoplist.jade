@@ -19,6 +19,22 @@ block append content
           a.no-side-border.list-group-item(href="/shop/#{shop._id}") #{shop.name}
             span.badge #{(shop.products || []).length}
 
+
+      if isAdmin
+        .list-headers Solicitações de Acesso
+        .wrapper-shop-list
+          .list-group
+            each request, i in pendingRequests
+              if !request.accepted
+                form(action="/universities/request/accepted", method="post")
+                  .form-group
+                    input(type='hidden', name='universityId', value='#{universityId}')
+                    input(type='hidden', name='userId', value='#{request.userid}')
+                    input(type='hidden', name='displayName', value='#{request.name}')
+                  button.no-side-border.list-group-item(type="submit", value="Submit") 
+                    | #{request.name}  
+                    i.fa.fa-check(style='float:right', aria-hidden='true')
+
   #shoplist-footer
     a.new-shop-btn.btn.btn-primary.btn-block(href='/shops/new')
       | Nova Loja

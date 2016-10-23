@@ -24,12 +24,20 @@ router.get('/:universityId', isAuthenticated, function(req, res, next) {
           if (university.hasOwnProperty('adminid')) {
             if (university['adminid'] == req.user.id) {
               isAdmin = true;
+
+              console.log("Pending Requests");
+              console.log(university['requests']);
+              console.log("university ID");
+              console.log(university._id);
+
               res.render('shoplist',
                 {
-                  title: "FreeMarket H8",
+                  title: "FreeMarket Admin",
                   shoplist: shoplist || [],
                   myshoplist: myshops,
                   pendingRequests: university['requests'],
+                  isAdmin: isAdmin,
+                  universityId: university._id,
                 });
             }
           }
@@ -44,10 +52,12 @@ router.get('/:universityId', isAuthenticated, function(req, res, next) {
                   if (university['requests'][i]['accepted']) {
                     res.render('shoplist',
                     {
-                      title: "FreeMarket H8",
+                      title: "FreeMarket",
                       shoplist: shoplist || [],
                       myshoplist: myshops,
                       pendingRequests: [],
+                      isAdmin: isAdmin,
+                      universityId: university.id,
                     });
                   } else {
                     // O admin não verificou o request
