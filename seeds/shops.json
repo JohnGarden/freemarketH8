@@ -1,6 +1,25 @@
 [
   {
+    "name": "Massagem Alencards ",
+    "universityid": "580c0f894eb6a00440923dcd",
+    "ownerid": "1193661767376556",
+    "products": [
+        {
+            "name": "Pé",
+            "price": 24,
+            "available": true
+        },
+        {
+            "name": "Mão",
+            "price": 24,
+            "available": true
+        }
+    ]
+  },
+  {
     "name": "Brigadeiros 216",
+    "universityid": "580c0f894eb6a00440923dcd",
+    "ownerid": "1193661767376556",
     "products": [
       {
         "name": "Cholocate",
@@ -21,6 +40,8 @@
   },
   {
     "name": "Bodega 209B",
+    "universityid": "580c0f894eb6a00440923dcd",
+    "ownerid": "10210644939870524",
     "products": [
       {
         "name": "Skol",
@@ -36,6 +57,8 @@
   },
   {
     "name": "Bar do MIB",
+    "universityid": "580c0f894eb6a00440923dcd",
+    "ownerid": "1037409883022921",
     "products": [
       {
         "name": "Cerveja",
@@ -46,6 +69,8 @@
   },
   {
     "name": "Trufas do H8",
+    "universityid": "580c0f894eb6a00440923dcd",
+    "ownerid": "10210644939870524",
     "products": [
       {
         "name": "Brigadeiro",
@@ -56,6 +81,8 @@
   },
   {
     "name": "Cones Trufados",
+    "universityid": "580c0f894eb6a00440923dcd",
+    "ownerid": "10210644939870524",
     "products": [
       {
         "name": "Maracujá",
@@ -66,6 +93,8 @@
   },
   {
     "name": "Balas e Doces",
+    "universityid": "580c0f894eb6a00440923dcd",
+    "ownerid": "10210644939870524",
     "products": [
       {
         "name": "Fini",
@@ -76,6 +105,8 @@
   },
   {
     "name": "Mercadinho do C",
+    "universityid": "580c0f894eb6a00440923dcd",
+    "ownerid": "10210644939870524",
     "products": [
       {
         "name": "Passatempo",
@@ -86,6 +117,8 @@
   },
   {
     "name": "Papel H-oitogênico",
+    "universityid": "580c0f894eb6a00440923dcd",
+    "ownerid": "10210644939870524",
     "products": [
       {
         "name": "Neve",
@@ -96,6 +129,8 @@
   },
   {
     "name": "Comida boa no H8",
+    "universityid": "580c0f894eb6a00440923dcd",
+    "ownerid": "10210644939870524",
     "products": [
       {
         "name": "Marmita",
@@ -106,6 +141,8 @@
   },
   {
     "name": "Loja do Chá 142",
+    "universityid": "580c0f894eb6a00440923dcd",
+    "ownerid": "10210644939870524",
     "products": [
       {
         "name": "Camomila",
@@ -126,6 +163,8 @@
   },
   {
     "name": "Cama Mesa e Banho",
+    "universityid": "580c0f894eb6a00440923dcd",
+    "ownerid": "10210644939870524",
     "products": [
       {
         "name": "Lençol",
@@ -136,6 +175,8 @@
   },
   {
     "name": "Aluguel de Ferramentas",
+    "universityid": "580c0f894eb6a00440923dcd",
+    "ownerid": "10210644939870524",
     "products": [
       {
         "name": "Chave de Fenda",
