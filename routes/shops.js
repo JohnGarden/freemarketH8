@@ -57,7 +57,11 @@ router.get('/:universityId', isAuthenticated, function(req, res, next) {
               }
               if (!requestSent) {
                 // Solicitar acesso
-                res.render('pendingrequest');
+                res.render('request_access',
+                  {
+                    title: university.name,
+                    universityId: university._id,
+                  });
               }
             }
           }

@@ -1,0 +1,16 @@
+extends layout
+
+block append head
+  link(rel='stylesheet', href='/stylesheets/shoplist.css')
+
+block append content
+  .wrapper
+    form(action="/universities/request", method="post")
+      .form-group
+            
+        input(type='hidden', name='universityId', value='#{universityId}')
+        
+      button.request-access-btn.btn.btn-primary(type="submit", value="Submit") Solicitar Acesso
+
+
+    

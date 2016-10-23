@@ -92,3 +92,9 @@ html, body{
   margin: 5px;
   width: 98%;
 }
+
+.request-access-btn {
+  border-radius: 0;
+  font-size: 20px;
+  margin: 20px;
+}
