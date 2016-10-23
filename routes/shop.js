@@ -16,7 +16,14 @@ router.get('/:shopId', isAuthenticated, function(req, res, next) {
         if (!shop) return next();
         var cookie = req.cookies.cookieName;
         res.cookie('shopId', req.params.shopId, { maxAge: 900000, httpOnly: true });
-        res.render('shop', {title: shop.name, shop: shop, shopId: req.params.shopId, isOwner: isOwner});
+        res.render('shop', 
+          {
+            title: shop.name, 
+            shop: shop, 
+            shopId: req.params.shopId, 
+            isOwner: isOwner,
+            universityId: shop.universityid
+          });
       })
       .onReject(next);
 });
