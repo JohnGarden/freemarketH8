@@ -1,0 +1,45 @@
+[
+  {
+    "name": "Instituto Tecnológico de Aeronáutica",
+    "adminid": "1037409883022921",
+    "requests": [
+      {
+      "userid": "1193661767376556",
+      "name": "João Jardim Neto",
+      "accepted": false
+      },
+      {
+      "userid": "1193661767376552",
+      "name": "César Xingu",
+      "accepted": false
+      },
+      {
+      "userid": "1193661767376551",
+      "name": "Flash Maluco",
+      "accepted": false
+      }
+
+    ]
+  },
+  {
+    "name": "Unicamp",
+    "adminid": "1193661767376556",
+    "requests": [
+      {
+      "userid": "1037409883022922",
+      "name": "Victor Lag",
+      "accepted": false
+      },
+      {
+      "userid": "1193661767376559",
+      "name": "Felipe Heartstone",
+      "accepted": false
+      },
+      {
+      "userid": "1193661767376558",
+      "name": "César Dotinha",
+      "accepted": false
+      }
+    ]
+  }
+]
