@@ -2,6 +2,19 @@ var express = require('express');
 var middleware = require('./routemiddleware.js')();
 var router = express.Router();
 
+router.get('/new/:universityId', function(req, res) {
+  console.log("sugação da universidade");
+  console.log(req.params);
+  res.render('new_shop', 
+    { 
+      title: "Nova Loja",
+      universityId: req.params.universityId
+    } 
+  );
+});
+
+
+
 router.get('/:universityId', isAuthenticated, function(req, res, next) {
   req.db.get('shops').find()
       .then(function(docs) {
@@ -57,7 +70,7 @@ router.get('/:universityId', isAuthenticated, function(req, res, next) {
                       myshoplist: myshops,
                       pendingRequests: [],
                       isAdmin: isAdmin,
-                      universityId: university.id,
+                      universityId: university._id,
                     });
                   } else {
                     // O admin não verificou o request
@@ -81,19 +94,24 @@ router.get('/:universityId', isAuthenticated, function(req, res, next) {
       .onReject(next);
 });
 
-router.get('/new', isAuthenticated, function(req, res) {
-  res.render('new_shop', { title: "Nova Loja"} );
-});
+
 
 router.post('/new', isAuthenticated, function(req, res, next) {
   console.log("Creating store!");
   console.log(req.body.store.name);
   console.log(req.body.store.owner);
+  console.log(req.body.universityId);
   console.log(req.user);
 
-  req.db.get('shops').insert({name: req.body.store.name, ownerid: req.user.id})
-      .onFulfill(function() { res.redirect('/'); })
-      .onReject(next);
+  req.db.get('shops').insert(
+    {
+      name: req.body.store.name, 
+      ownerid: req.user.id,
+      universityid:  req.body.universityId
+    }
+  )
+  .onFulfill(function() { res.redirect('/'); })
+  .onReject(next);
 });
 
 module.exports = router;

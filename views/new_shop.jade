@@ -13,6 +13,7 @@ block append content
       .form-group
         label(for="storeOwner") Responsável
         input.input-new-shop.form-control#storeOwner(placeholder="Nome ou Apelido", name="store[owner]", required)
+        input(type='hidden', name='universityId', value='#{universityId}')  
       button.new-shop-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Criar
 
 block append content
