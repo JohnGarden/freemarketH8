@@ -48,3 +48,9 @@ block append content
           label(for="productPrice") Preço
           input.input-new-shop.form-control#productOwner(placeholder="ex.: 10.50", name="product[price]", required)
         button.new-shop-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Cadastrar novo produto
+
+    #footer
+      form(action="/shop/delete_shop", method="post")
+        .form-group
+          label Deletar loja
+        button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar loja(tem certeza)?
