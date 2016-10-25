@@ -16,7 +16,7 @@ block append content
       i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
 
     #products(ng-controller="ProductEditorController as ctrl",
-              ng-init="products=#{JSON.stringify(shop.products)}; shopId = '#{shop._id}'")
+              ng-init="products=#{JSON.stringify(shop.products || [])}; shopId = '#{shop._id}'")
       table(ng-form="ctrl.products_form")
         thead
           tr
