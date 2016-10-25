@@ -48,3 +48,11 @@ table tbody tr:hover {
   background-color: darkred;
   border-color: black;
 }
+
+.btn-remove {
+    color: #d63a37;
+}
+
+.btn-remove:hover {
+    color: #a94442;
+}
