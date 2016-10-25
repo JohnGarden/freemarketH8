@@ -110,7 +110,7 @@ router.post('/new', isAuthenticated, function(req, res, next) {
       universityid:  req.body.universityId
     }
   ).then(function(shop) {
-    res.redirect('/shop/' + shop._id);
+    res.redirect('/shop/' + shop._id + '/edit');
   }, next);
 });
 

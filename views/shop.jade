@@ -26,31 +26,9 @@ block append content
               div #{"R$" + product.price.toFixed(2)}
             td
               div #{product.available ? "Sim" : "Não"}
-            //- td
-            //-   button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar?
       else
         tr
           td Lista Vazia (Adicione um produto)
   if isOwner
     #footer
-      form(action="/shop/#{shop._id}/delete", method="post")
-        .form-group
-          label(for="productName") Produto a ser excluído
-          input.input-new-shop.form-control#productName(placeholder="ex.: Chave de Fenda", name="product[name]", required)
-        button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar produto?
-
-    #footer
-      form(action="/shop/#{shop._id}/new", method="post")
-        .form-group
-          label(for="productName") Novo Produto
-          input.input-new-shop.form-control#productName(placeholder="ex.: Salgado", name="product[name]", required)
-        .form-group
-          label(for="productPrice") Preço
-          input.input-new-shop.form-control#productOwner(placeholder="ex.: 10.50", name="product[price]", required)
-        button.new-shop-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Cadastrar novo produto
-
-    #footer
-      form(action="/shop/#{shop._id}/delete_shop", method="post")
-        .form-group
-          label Deletar loja
-        button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar loja (tem certeza)?
+      a.new-shop-btn.btn.btn-primary.btn-block(href="/shop/#{shop._id}/edit") Gerenciar

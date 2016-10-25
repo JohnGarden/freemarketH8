@@ -23,6 +23,24 @@ router.get('/:shopId', isAuthenticated, function(req, res, next) {
       }, next);
 });
 
+router.get('/:shopId/edit', isAuthenticated, function(req, res, next) {
+  req.db.get('shops').findById(req.params.shopId)
+      .then(function(shop) {
+        if (!shop) return next();
+        var isOwner = false;
+        if (shop.hasOwnProperty('ownerid') && shop['ownerid'] == req.user.id) {
+          isOwner = true;
+        }
+        if (!isOwner) return res.redirect('/shop/' + req.params.shopId);
+
+        res.render('shop_edit',
+          {
+            title: shop.name,
+            shop: shop
+          });
+      }, next);
+});
+
 router.post('/:shopId/new', isAuthenticated, function(req, res, next) {
   console.log("Creating product!");
   console.log(req.body);
