@@ -5,11 +5,11 @@ block append head
   link(rel='stylesheet', href='/stylesheets/shop.css')
 
 block append content
-  a(href='/shops/#{universityId}') 
+  a(href='/shops/#{shop.universityid}') 
     i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
 
   //- passando o shopId pelo table pra usar no jquery
-  table#shop(data-shopid="#{shopId}")
+  table#shop(data-shopid="#{shop._id}")
     thead
       tr
         th Produto
@@ -33,14 +33,14 @@ block append content
           td Lista Vazia (Adicione um produto)
   if isOwner
     #footer
-      form(action="/shop/delete", method="post")
+      form(action="/shop/#{shop._id}/delete", method="post")
         .form-group
           label(for="productName") Produto a ser excluído
           input.input-new-shop.form-control#productName(placeholder="ex.: Chave de Fenda", name="product[name]", required)
         button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar produto?
 
     #footer
-      form(action="/shop/new", method="post")
+      form(action="/shop/#{shop._id}/new", method="post")
         .form-group
           label(for="productName") Novo Produto
           input.input-new-shop.form-control#productName(placeholder="ex.: Salgado", name="product[name]", required)
@@ -50,7 +50,7 @@ block append content
         button.new-shop-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Cadastrar novo produto
 
     #footer
-      form(action="/shop/delete_shop", method="post")
+      form(action="/shop/#{shop._id}/delete_shop", method="post")
         .form-group
           label Deletar loja
         button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar loja (tem certeza)?

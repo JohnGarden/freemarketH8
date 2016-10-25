@@ -14,59 +14,50 @@ router.get('/:shopId', isAuthenticated, function(req, res, next) {
         }
 
         if (!shop) return next();
-        var cookie = req.cookies.cookieName;
-        res.cookie('shopId', req.params.shopId, { maxAge: 900000, httpOnly: true });
-        res.render('shop', 
+        res.render('shop',
           {
-            title: shop.name, 
-            shop: shop, 
-            shopId: req.params.shopId, 
-            isOwner: isOwner,
-            universityId: shop.universityid
+            title: shop.name,
+            shop: shop,
+            isOwner: isOwner
           });
       })
       .onReject(next);
 });
 
-router.post('/new', isAuthenticated, function(req, res, next) {
+router.post('/:shopId/new', isAuthenticated, function(req, res, next) {
   console.log("Creating product!");
   console.log(req.body);
-  console.log(req.cookies);
+  console.log(req.params.shopId);
 
-  //checa se ja existe item com esse nome
-  var isNameRepeated = false;
-  req.db.get('shops').findById(req.cookies.shopId)
+  req.db.get('shops').findById(req.params.shopId)
     .then(function(shop) {
       console.log(shop.products);
-      console.log(shop.products.length );
 
-      for(i=0; shop.products.length; i++){
-        if(shop.products[i].name.localeCompare(req.body.product.name)==0){
-          isNameRepeated = true;
-        }
+      //checa se ja existe item com esse nome
+      let isNameRepeated = (shop.products || []).some(function(elm) {
+        return elm.name.localeCompare(req.body.product.name) == 0;
+      });
+
+      if (isNameRepeated) {
+        console.log("Product with same name already exists");
+        // alert("Product with same name already exists");
+        // fazer um jeito de avisar pro user que ja existe item com esse nome
+        res.redirect('/shop/' + req.params.shopId);
+        return;
       }
-    });
-    
-  setTimeout(function(){
-    if (!isNameRepeated){ 
+
       //cria item na loja
-      req.db.get('shops').update(
-        {_id: req.cookies.shopId},
+      req.db.get('shops').updateById(req.params.shopId,
         {$addToSet: {products: {name: req.body.product.name, price: parseFloat(req.body.product.price), available: true}}}
       )
-      .onFulfill(function() { res.redirect('/shops/' + req.cookies.shopId); })
-      .onReject(next);
-      console.log("Product created");
-      console.log(isNameRepeated);
-    }
-    else {
-      console.log("Product with same name already exists");
-      // alert("Product with same name already exists");
-      // fazer um jeito de avisar pro user que ja existe item com esse nome
-      res.redirect('/shops/' + req.cookies.shopId);
-    }
-  }, 1000);
-  
+          .onFulfill(function() {
+            console.log("Product created");
+            res.redirect('/shop/' + req.params.shopId); })
+          .onReject(next);
+    }, function() {
+      next(); // onReject
+    });
+
   //caga por enquanto eh pra poder usar jquery em vez de cookie
   // jsdom.jQueryify(window, "http://code.jquery.com/jquery.js", function () {
   //   var $ = window.$;
@@ -74,36 +65,33 @@ router.post('/new', isAuthenticated, function(req, res, next) {
   //   $("body").prepend("<h1>The title</h1>");
   //   console.log($("h1").html());
   // });
-  
+
   // if (req.db.get('shops').find({_id: req.cookies.shopId, products: {name: req.body.product.name}}).toArray().length < 1){
 });
 
-router.post('/delete', isAuthenticated, function(req, res, next) {
+router.post('/:shopId/delete', isAuthenticated, function(req, res, next) {
   //deleta todas os items com o nome entrado
   //o nome de cada item deve ser unico pela funcao de criar acima
   console.log("Deleting product!");
   console.log(req.body);
-  
-  req.db.get('shops').update(
-    {_id: req.cookies.shopId},
+
+  req.db.get('shops').updateById(req.params.shopId,
     {$pull: {products: {name: req.body.product.name}}}
   )
-  .onFulfill(function() { res.redirect('/shops/' + req.cookies.shopId); })
-  .onReject(next);
+      .onFulfill(function() { res.redirect('/shop/' + req.params.shopId); })
+      .onReject(next);
 });
 
-router.post('/delete_shop', isAuthenticated, function(req, res, next) {
+router.post('/:shopId/delete_shop', isAuthenticated, function(req, res, next) {
   //deleta loja pra sempre
   //talvez precise de uma confirmação melhor do usuário
   console.log("Deleting shop!");
   console.log(req.body);
   console.log(req.cookies);
-  
-  req.db.get('shops').remove(
-    {_id: req.cookies.shopId}
-  )
-  .onFulfill(function() { res.redirect('/universities'); })
-  .onReject(next);
+
+  req.db.get('shops').removeById(req.params.shopId)
+      .onFulfill(function() {res.redirect('/universities');})
+      .onReject(next);
 });
 
 module.exports = router;
