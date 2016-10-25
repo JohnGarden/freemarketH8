@@ -33,7 +33,7 @@ router.post('/:shopId/new', isAuthenticated, function(req, res, next) {
       console.log(shop.products);
 
       //checa se ja existe item com esse nome
-      let isNameRepeated = (shop.products || []).some(function(elm) {
+      var isNameRepeated = (shop.products || []).some(function(elm) {
         return elm.name.localeCompare(req.body.product.name) == 0;
       });
 
