@@ -20,7 +20,7 @@ router.get('/:shopId', isAuthenticated, function(req, res, next) {
             shop: shop,
             isOwner: isOwner
           });
-      }, next);
+      }).onReject(next);
 });
 
 router.get('/:shopId/edit', isAuthenticated, function(req, res, next) {
@@ -38,7 +38,52 @@ router.get('/:shopId/edit', isAuthenticated, function(req, res, next) {
             title: shop.name,
             shop: shop
           });
-      }, next);
+      }).onReject(next);
+});
+
+router.post('/:shopId/products', isAuthenticated, function(req, res, next) {
+  req.db.get('shops').findById(req.params.shopId)
+      .then(function(shop) {
+        if (!shop) return next();
+        var isOwner = false;
+        if (shop.hasOwnProperty('ownerid') && shop['ownerid'] == req.user.id) {
+          isOwner = true;
+        }
+        if (!isOwner) return next();
+
+        var products = [];
+        var error = null;
+        var names = new Set();
+
+        req.body.products.forEach(function(product) {
+          if (product.name == "") {
+            error = "Produto não pode ter nome vazio.";
+          } if (names.has(product.name)) {
+            error = "Nomes dos produtos têm que ser únicos!";
+          }
+          names.add(product.name);
+
+          if (!product.price || product.price <= 0) {
+            error = "Preço dos produtos tem que ser maior que zero.";
+          }
+          products.push({
+              name: product.name,
+              price: parseFloat(product.price),
+              available: product.available || false
+            });
+        });
+        if (error) {
+          res.status(400).json({error: error});
+          return;
+        }
+
+        console.log(req.body.products);
+        req.db.get('shops')
+            .updateById(req.params.shopId, {$set: {products: products}})
+            .then(function() {
+              res.json({success: true});
+            }).onReject(next);
+      }).onReject(next);
 });
 
 router.post('/:shopId/new', isAuthenticated, function(req, res, next) {
@@ -71,7 +116,7 @@ router.post('/:shopId/new', isAuthenticated, function(req, res, next) {
             console.log("Product created");
             res.redirect('/shop/' + req.params.shopId); })
           .onReject(next);
-    }, next);
+    }).onReject(next);
 
   //caga por enquanto eh pra poder usar jquery em vez de cookie
   // jsdom.jQueryify(window, "http://code.jquery.com/jquery.js", function () {
@@ -94,7 +139,7 @@ router.post('/:shopId/delete', isAuthenticated, function(req, res, next) {
     {$pull: {products: {name: req.body.product.name}}}
   ).then(function() {
     res.redirect('/shop/' + req.params.shopId);
-  }, next);
+  }).onReject(next);
 });
 
 router.post('/:shopId/delete_shop', isAuthenticated, function(req, res, next) {
@@ -105,7 +150,7 @@ router.post('/:shopId/delete_shop', isAuthenticated, function(req, res, next) {
   console.log(req.cookies);
 
   req.db.get('shops').removeById(req.params.shopId)
-      .then(function() {res.redirect('/universities');}, next);
+      .then(function() {res.redirect('/universities');}).onReject(next);
 });
 
 module.exports = router;

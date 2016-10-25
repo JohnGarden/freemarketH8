@@ -5,18 +5,19 @@ block append head
   script(src='/js/angular-sanitize-1.5.8.min.js')
   script(src='/js/ui-bootstrap-tpls-2.2.0.min.js')
   script(src='/js/angular-bootstrap-confirm.min.js')
+  script(src='/js/shop_edit.js')
   
   link(rel='stylesheet', href='/stylesheets/shoplist.css')
   link(rel='stylesheet', href='/stylesheets/shop.css')
 
 block append content
   #ng-container(ng-app='shop.edit')
-    a(href='/shops/#{shop.universityid}') 
+    a(href='/shop/#{shop._id}') 
       i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
 
-    #products(ng-controller="ProductEditorController",
-              ng-init="products=#{JSON.stringify(shop.products)}")
-      table(ng-form="products_form")
+    #products(ng-controller="ProductEditorController as ctrl",
+              ng-init="products=#{JSON.stringify(shop.products)}; shopId = '#{shop._id}'")
+      table(ng-form="ctrl.products_form")
         thead
           tr
             th Produto
@@ -24,15 +25,15 @@ block append content
             th Disponível
             th
         tbody.wrapper-shop-list
-          tr(ng-repeat="product in products", ng-form="{{'prod_' + $index}}")
-            td(ng-class="{'has-error': {{'prod_' + $index}}.name.$invalid}")
-              form(ng-submit="submitProducts()")
+          tr(ng-repeat="product in products")
+            td
+              form(name="name_f", ng-submit="submitProducts()", ng-class="{'has-error': name_f.name.$invalid}")
                 input.form-control(type="text", name="name",
                     ng-model="product.name",
                     ng-required="true",
                     ng-maxlength="30")
-            td(ng-class="{'has-error': {{'prod_' + $index}}.price.$invalid}")
-              form.input-group(ng-submit="submitProducts()")
+            td
+              form.input-group(name="price_f", ng-submit="submitProducts()", ng-class="{'has-error': price_f.price.$invalid}")
                 span.input-group-addon R$
                 input.form-control(type="number", name="price",
                     step="0.01",
@@ -50,7 +51,7 @@ block append content
             
       #footer
         button.btn-lg.btn.btn-primary.btn-block(type="button",
-                                                ng-disabled="products_form.$invalid",
+                                                ng-disabled="ctrl.products_form.$invalid",
                                                 ng-click="submitProducts()") Salvar
 
     #footer
@@ -65,30 +66,3 @@ block append content
                                                confirm-button-type="danger",
                                                cancel-text="Não",
                                                on-confirm="submitForm(storeDeleteForm)") Apagar
-  script.
-    var app = angular.module('shop.edit', ['mwl.confirm']);
-    app.controller('StoreDeleteController', function($scope) {
-        $scope.submitForm = function(form) {
-          document.getElementById('storeDeleteForm').submit()
-        }
-      });
-    
-    app.controller('ProductEditorController', function($scope, $http) {
-      $scope.roundPrice = function(product) {
-        if (product.price) {
-          product.price = Math.round(product.price * 100) / 100;
-        }
-      }
-      
-      $scope.newProduct = function() {
-        $scope.products.push({available: true});
-      }
-      
-      $scope.removeProduct = function(product) {
-        $scope.products.splice($scope.products.indexOf(product), 1);
-      }
-      
-      $scope.submitProducts = function(product) {
-        alert("TODO!")
-      }
-    });
