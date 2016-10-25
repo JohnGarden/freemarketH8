@@ -5,10 +5,13 @@ var router = express.Router();
 router.get('/new/:universityId', function(req, res) {
   console.log("sugação da universidade");
   console.log(req.params);
+  var backBtnLinkPath = "/shops/" + req.params.universityId;
   res.render('new_shop',
     {
       title: "Nova Loja",
-      universityId: req.params.universityId
+      universityId: req.params.universityId,
+      showBackBtn: true,
+      backBtnLink: backBtnLinkPath,
     }
   );
 });
@@ -52,6 +55,8 @@ router.get('/:universityId', isAuthenticated, function(req, res, next) {
                   pendingRequests: university['requests'],
                   isAdmin: isAdmin,
                   universityId: university._id,
+                  backBtnLink: "/universities",
+                  showBackBtn: true,
                 });
             }
           }
@@ -73,10 +78,16 @@ router.get('/:universityId', isAuthenticated, function(req, res, next) {
                       pendingRequests: [],
                       isAdmin: isAdmin,
                       universityId: university._id,
+                      backBtnLink: "/universities",
+                      showBackBtn: true,
                     });
                   } else {
                     // O admin não verificou o request
-                    res.render('pendingrequest');
+                    res.render('pendingrequest',
+                      {
+                        backBtnLink: "/universities",
+                        showBackBtn: true,
+                      });
                   }
                 }
               }
@@ -86,6 +97,8 @@ router.get('/:universityId', isAuthenticated, function(req, res, next) {
                   {
                     title: university.name,
                     universityId: university._id,
+                    backBtnLink: "/universities",
+                    showBackBtn: true,
                   });
               }
             }

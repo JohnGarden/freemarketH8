@@ -9,6 +9,7 @@ router.get('/', isAuthenticated, function(req, res) {
         res.render('universities', {
           title: "Universidades",
           universities: docs || [],
+          showBackBtn: false,
         });
       });
 });
@@ -19,6 +20,8 @@ router.get('/request', isAuthenticated, function(req, res) {
         res.render('universities', {
           title: "Universidades",
           universities: docs || [],
+          backBtnLink: "/",
+          showBackBtn: true,
         });
       });
 });

@@ -4,10 +4,14 @@ html
     title=title
     link(rel='stylesheet', href='/stylesheets/bootstrap-3.3.7.min.css')
     link(rel='stylesheet', href='/stylesheets/font-awesome-4.6.3/css/font-awesome.min.css')
-    
+   
     meta(name='viewport', content='width=device-width, initial-scale=1')
 
-  body
+  body(style='margin-bottom:100px')
     block content
       #header
-        div#app-title #{title}
+        div#app-title 
+          if showBackBtn
+            a(href="#{backBtnLink}")
+              i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
+           | #{title}

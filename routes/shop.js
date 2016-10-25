@@ -13,12 +13,14 @@ router.get('/:shopId', isAuthenticated, function(req, res, next) {
         if (shop.hasOwnProperty('ownerid') && shop['ownerid'] == req.user.id) {
           isOwner = true;
         }
-
+        var backBtnLinkPath = "/shops/" + shop.universityid;
         res.render('shop',
           {
             title: shop.name,
             shop: shop,
-            isOwner: isOwner
+            isOwner: isOwner,
+            backBtnLink: backBtnLinkPath,
+            showBackBtn: true,
           });
       }).onReject(next);
 });
@@ -32,11 +34,13 @@ router.get('/:shopId/edit', isAuthenticated, function(req, res, next) {
           isOwner = true;
         }
         if (!isOwner) return res.redirect('/shop/' + req.params.shopId);
-
+        var backBtnLinkPath = "/shop/" + req.params.shopId;
         res.render('shop_edit',
           {
             title: shop.name,
-            shop: shop
+            shop: shop,
+            backBtnLink: backBtnLinkPath,
+            showBackBtn: true,
           });
       }).onReject(next);
 });

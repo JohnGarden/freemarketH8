@@ -12,8 +12,8 @@ block append head
 
 block append content
   #ng-container(ng-app='shop.edit')
-    a(href='/shop/#{shop._id}') 
-      i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
+    //- a(href='/shop/#{shop._id}') 
+    //-   i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
 
     #products(ng-controller="ProductEditorController as ctrl",
               ng-init="products=#{JSON.stringify(shop.products || [])}; shopId = '#{shop._id}'")

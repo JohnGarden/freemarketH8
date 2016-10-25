@@ -1,11 +1,12 @@
 extends layout
 
 block append head
+
   link(rel='stylesheet', href='/stylesheets/shoplist.css')
 
+
 block append content
-  a(href='/universities')
-    i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
+  
 
   #holder
     .list-headers Lojas
@@ -37,6 +38,8 @@ block append content
                   button.no-side-border.list-group-item(type="submit", value="Submit") 
                     | #{request.name}  
                     i.fa.fa-check(style='float:right', aria-hidden='true')
+
+  div(style='display:block') -
 
   #shoplist-footer
     a.new-shop-btn.btn.btn-primary.btn-block(href='/shops/new/#{universityId}')

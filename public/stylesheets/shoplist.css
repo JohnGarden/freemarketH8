@@ -25,7 +25,9 @@ div {
 }
 
 #back-btn {
-  position: fixed;
+  /*position: fixed;*/
+  float: left;
+  margin-left: 5px;
   left: 10px;
   top: 10px;
   padding: 0;
