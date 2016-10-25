@@ -5,6 +5,7 @@ var router = express.Router();
 router.get('/', isAuthenticated, function(req, res) {
    req.db.get('universities').find()
       .then(function(docs) {
+        res.cookie('universityId', '');
         res.render('universities', {
           title: "Universidades",
           universities: docs || [],
@@ -32,12 +33,12 @@ router.post('/request', isAuthenticated, function(req, res, next) {
   // Cria request em university
   req.db.get('universities').update(
         {_id: req.body.universityId},
-        {$addToSet: 
+        {$addToSet:
           {
-            requests: 
+            requests:
             {
-              userid: req.user.id, 
-              name: req.user.displayName, 
+              userid: req.user.id,
+              name: req.user.displayName,
               accepted: false
             }
           }
@@ -63,25 +64,25 @@ router.post('/request/accepted', isAuthenticated, function(req, res, next) {
   // Deleta request do aluno em university
   req.db.get('universities').update(
     { _id: req.body.universityId},
-    { $pull: 
+    { $pull:
       {
-        requests: 
+        requests:
         {
           userid: req.body.userId
         }
       }
     }
   )
-  .onFulfill(function() { 
+  .onFulfill(function() {
     // Aceita request do aluno em university
     req.db.get('universities').update(
       { _id: req.body.universityId},
-      { $addToSet: 
+      { $addToSet:
         {
-          requests: 
+          requests:
           {
-            userid: req.body.userId, 
-            name: req.body.displayName, 
+            userid: req.body.userId,
+            name: req.body.displayName,
             accepted: true
           }
         }
@@ -93,7 +94,7 @@ router.post('/request/accepted', isAuthenticated, function(req, res, next) {
   .onReject(next);
   console.log("Request deleted");
 
-  
+
 });
 
 module.exports = router;

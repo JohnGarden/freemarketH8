@@ -43,6 +43,7 @@ router.get('/:universityId', isAuthenticated, function(req, res, next) {
               console.log("university ID");
               console.log(university._id);
 
+              res.cookie('universityId', university._id);
               res.render('shoplist',
                 {
                   title: "FreeMarket Admin",
@@ -63,6 +64,7 @@ router.get('/:universityId', isAuthenticated, function(req, res, next) {
                 {
                   requestSent = true;
                   if (university['requests'][i]['accepted']) {
+                    res.cookie('universityId', university._id);
                     res.render('shoplist',
                     {
                       title: "FreeMarket",

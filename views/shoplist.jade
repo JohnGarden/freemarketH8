@@ -4,6 +4,9 @@ block append head
   link(rel='stylesheet', href='/stylesheets/shoplist.css')
 
 block append content
+  a(href='/universities')
+    i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
+
   #holder
     .list-headers Lojas
     .wrapper-shop-list

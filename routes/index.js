@@ -25,7 +25,11 @@ passport.deserializeUser(function(obj, cb) {
 router.get('/', function(req, res, next) {
   console.log(req.user);
   if (req.user && req.isAuthenticated()) {
-    res.redirect('/universities');    
+    if (req.cookies.universityId) {
+      res.redirect('/shops/' + req.cookies.universityId);
+    } else {
+      res.redirect('/universities');
+    }
   } else {
     res.redirect('/login');
   }
@@ -37,7 +41,7 @@ router.get('/login', function(req, res, next) {
 
 router.get('/login/facebook', passport.authenticate('facebook'));
 
-router.get('/login/facebook/return', 
+router.get('/login/facebook/return',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');

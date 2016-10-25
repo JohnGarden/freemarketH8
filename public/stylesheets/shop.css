@@ -29,15 +29,6 @@ table tbody tr:hover {
   background-color: #52d4c8;
 }
 
-#back-btn {
-  position: fixed;
-  left: 10px;
-  top: 10px;
-  padding: 0;
-  text-align: left;
-  font-size: 40px;
-}
-
 .delete-btn {
   font-size: 20px;
   background-color: red;

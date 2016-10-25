@@ -24,6 +24,15 @@ div {
   margin-bottom: 0px;
 }
 
+#back-btn {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  padding: 0;
+  text-align: left;
+  font-size: 40px;
+}
+
 .list-headers {
   font-family: "Amaranth";
   color: #004C99;
