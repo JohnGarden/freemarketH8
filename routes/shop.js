@@ -8,20 +8,19 @@ var router = express.Router();
 router.get('/:shopId', isAuthenticated, function(req, res, next) {
   req.db.get('shops').findById(req.params.shopId)
       .then(function(shop) {
+        if (!shop) return next();
         var isOwner = false;
         if (shop.hasOwnProperty('ownerid') && shop['ownerid'] == req.user.id) {
           isOwner = true;
         }
 
-        if (!shop) return next();
         res.render('shop',
           {
             title: shop.name,
             shop: shop,
             isOwner: isOwner
           });
-      })
-      .onReject(next);
+      }, next);
 });
 
 router.post('/:shopId/new', isAuthenticated, function(req, res, next) {
@@ -54,9 +53,7 @@ router.post('/:shopId/new', isAuthenticated, function(req, res, next) {
             console.log("Product created");
             res.redirect('/shop/' + req.params.shopId); })
           .onReject(next);
-    }, function() {
-      next(); // onReject
-    });
+    }, next);
 
   //caga por enquanto eh pra poder usar jquery em vez de cookie
   // jsdom.jQueryify(window, "http://code.jquery.com/jquery.js", function () {
@@ -77,9 +74,9 @@ router.post('/:shopId/delete', isAuthenticated, function(req, res, next) {
 
   req.db.get('shops').updateById(req.params.shopId,
     {$pull: {products: {name: req.body.product.name}}}
-  )
-      .onFulfill(function() { res.redirect('/shop/' + req.params.shopId); })
-      .onReject(next);
+  ).then(function() {
+    res.redirect('/shop/' + req.params.shopId);
+  }, next);
 });
 
 router.post('/:shopId/delete_shop', isAuthenticated, function(req, res, next) {
@@ -90,8 +87,7 @@ router.post('/:shopId/delete_shop', isAuthenticated, function(req, res, next) {
   console.log(req.cookies);
 
   req.db.get('shops').removeById(req.params.shopId)
-      .onFulfill(function() {res.redirect('/universities');})
-      .onReject(next);
+      .then(function() {res.redirect('/universities');}, next);
 });
 
 module.exports = router;

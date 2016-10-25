@@ -5,11 +5,11 @@ var router = express.Router();
 router.get('/new/:universityId', function(req, res) {
   console.log("sugação da universidade");
   console.log(req.params);
-  res.render('new_shop', 
-    { 
+  res.render('new_shop',
+    {
       title: "Nova Loja",
       universityId: req.params.universityId
-    } 
+    }
   );
 });
 
@@ -105,13 +105,13 @@ router.post('/new', isAuthenticated, function(req, res, next) {
 
   req.db.get('shops').insert(
     {
-      name: req.body.store.name, 
+      name: req.body.store.name,
       ownerid: req.user.id,
       universityid:  req.body.universityId
     }
-  )
-  .onFulfill(function() { res.redirect('/'); })
-  .onReject(next);
+  ).then(function(shop) {
+    res.redirect('/shop/' + shop._id);
+  }, next);
 });
 
 module.exports = router;
