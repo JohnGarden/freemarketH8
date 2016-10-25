@@ -1,56 +1,75 @@
 extends layout
 
 block append head
+  script(src='/js/angularjs-1.5.8.min.js')
+  script(src='/js/angular-sanitize-1.5.8.min.js')
+  script(src='/js/ui-bootstrap-tpls-2.2.0.min.js')
+  script(src='/js/angular-bootstrap-confirm.min.js')
+  
   link(rel='stylesheet', href='/stylesheets/shoplist.css')
   link(rel='stylesheet', href='/stylesheets/shop.css')
 
 block append content
-  a(href='/shops/#{shop.universityid}') 
-    i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
+  #ng-container(ng-app='shop.edit')
+    a(href='/shops/#{shop.universityid}') 
+      i#back-btn.fa.fa-angle-left(aria-hidden='true').back-btn
 
-  //- passando o shopId pelo table pra usar no jquery
-  table#shop(data-shopid="#{shop._id}")
-    thead
-      tr
-        th Produto
-        th Preço
-        th Disponível
-        //- th Deletar
-    tbody.wrapper-shop-list
-      if shop.products && shop.products.length > 0
-        each product, i in shop.products
-          tr
-            td
-              div #{product.name}
-            td
-              div #{"R$" + product.price.toFixed(2)}
-            td
-              div #{product.available ? "Sim" : "Não"}
-            //- td
-            //-   button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar?
-      else
+    table
+      thead
         tr
-          td Lista Vazia (Adicione um produto)
-          
-  #footer
-    form(action="/shop/#{shop._id}/delete", method="post")
-      .form-group
-        label(for="productName") Produto a ser excluído
-        input.input-new-shop.form-control#productName(placeholder="ex.: Chave de Fenda", name="product[name]", required)
-      button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar produto?
+          th Produto
+          th Preço
+          th Disponível
+          //- th Deletar
+      tbody.wrapper-shop-list
+        if shop.products && shop.products.length > 0
+          each product, i in shop.products
+            tr
+              td
+                div #{product.name}
+              td
+                div #{"R$" + product.price.toFixed(2)}
+              td
+                div #{product.available ? "Sim" : "Não"}
+              //- td
+              //-   button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar?
+        else
+          tr
+            td Lista Vazia (Adicione um produto)
+            
+    #footer
+      form(action="/shop/#{shop._id}/delete", method="post")
+        .form-group
+          label(for="productName") Produto a ser excluído
+          input.input-new-shop.form-control#productName(placeholder="ex.: Chave de Fenda", name="product[name]", required)
+        button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar produto?
 
-  #footer
-    form(action="/shop/#{shop._id}/new", method="post")
-      .form-group
-        label(for="productName") Novo Produto
-        input.input-new-shop.form-control#productName(placeholder="ex.: Salgado", name="product[name]", required)
-      .form-group
-        label(for="productPrice") Preço
-        input.input-new-shop.form-control#productOwner(placeholder="ex.: 10.50", name="product[price]", required)
-      button.new-shop-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Cadastrar novo produto
+    #footer
+      form(action="/shop/#{shop._id}/new", method="post")
+        .form-group
+          label(for="productName") Novo Produto
+          input.input-new-shop.form-control#productName(placeholder="ex.: Salgado", name="product[name]", required)
+        .form-group
+          label(for="productPrice") Preço
+          input.input-new-shop.form-control#productOwner(placeholder="ex.: 10.50", name="product[price]", required)
+        button.new-shop-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Cadastrar novo produto
 
-  #footer
-    form(action="/shop/#{shop._id}/delete_shop", method="post")
-      .form-group
-        label Deletar loja
-      button.delete-btn.btn.btn-primary.btn-block(type="submit", value="Submit") Deletar loja (tem certeza)?
+    #footer
+      form#storeDeleteForm(action="/shop/#{shop._id}/delete_shop", method="post", ng-controller="StoreDeleteController")
+        .form-group
+          label Deletar loja
+        button.delete-btn.btn.btn-primary.btn-block(type="button",
+                                                    mwl-confirm,
+                                                    title="Apagar Loja"
+                                                    message="Tem certeza que deseja apagar a loja? Essa operação não tem volta.",
+                                                    confirm-text="Sim",
+                                                    confirm-button-type="danger",
+                                                    cancel-text="Não",
+                                                    on-confirm="submitForm(storeDeleteForm)") Apagar Loja
+  script.
+    var app = angular.module('shop.edit', ['mwl.confirm']);
+    app.controller('StoreDeleteController', function($scope) {
+        $scope.submitForm = function(form) {
+          document.getElementById('storeDeleteForm').submit()
+        }
+      });
