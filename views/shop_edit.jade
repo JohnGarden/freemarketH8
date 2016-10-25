@@ -28,14 +28,14 @@ block append content
           tr(ng-repeat="product in products")
             td
               form(name="name_f", ng-submit="submitProducts()", ng-class="{'has-error': name_f.name.$invalid}")
-                input.form-control(type="text", name="name",
+                input.form-control(type="text", name="name", placeholder="Nome"
                     ng-model="product.name",
                     ng-required="true",
                     ng-maxlength="30")
             td
               form.input-group(name="price_f", ng-submit="submitProducts()", ng-class="{'has-error': price_f.price.$invalid}")
                 span.input-group-addon R$
-                input.form-control(type="number", name="price",
+                input.form-control(type="number", name="price", placeholder="0.00"
                     step="0.01",
                     ng-model="product.price",
                     ng-required="true",
